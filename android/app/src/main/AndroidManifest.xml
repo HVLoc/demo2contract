@@ -42,4 +42,13 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+        <uses-permission android:name="android.permission.NFC" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />
 </manifest>
