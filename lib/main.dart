@@ -11,20 +11,40 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo Contract',
       getPages: RoutePage.route,
-      home: const TwoButtonView(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: TwoButtonView(),
     );
   }
 }
 
 class TwoButtonView extends StatelessWidget {
-  const TwoButtonView({Key? key}) : super(key: key);
-
+  TwoButtonView({Key? key}) : super(key: key);
+  final LoginModelResponse loginModelResponse = LoginModelResponse(
+    accessToken:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm9yZ2FuaXphdGlvbklkIjoyLCJ1c2VybmFtZSI6InNkc19hZG1pbiIsImlhdCI6MTc0NTk0NjM0MCwiZXhwIjoyNjkyNjc0MzQwfQ.dmOXChFGoxQCk5ZejttSQHhijbEjo1DI5jQEzgDB7PY',
+    userInfo: UserInfo(
+        address: "address",
+        avatar: "avatar",
+        imageSignatures: "imageSignatures",
+        defaultSignature: "defaultSignature",
+        email: "email",
+        id: 0,
+        memberOf: [],
+        name: 'name',
+        phone: "phone",
+        status: 0,
+        updatedAt: null,
+        username: "username",
+        identityNumber: "identityNumber"),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +58,7 @@ class TwoButtonView extends StatelessWidget {
             TextButton(
               onPressed: () {
                 ContractModules.gotoDocumentManagement(
-                  token: "accsess_token",
-                );
+                    loginModelResponse: loginModelResponse);
               },
               child: const Text('Tất cả công việc'),
             ),
@@ -47,7 +66,7 @@ class TwoButtonView extends StatelessWidget {
             TextButton(
               onPressed: () {
                 ContractModules.gotoDocumentsHandle(
-                  token: "accsess_token",
+                  loginModelResponse: loginModelResponse,
                   status: DocumentsManagementConst.listUnprocessed,
                 );
               },

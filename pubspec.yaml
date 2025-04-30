@@ -38,6 +38,7 @@ dependencies:
   e_contract:
     path: ../2contractpackage
   chewie: 1.10.0
+  wakelock_plus: 1.2.10
 
 dev_dependencies:
   flutter_test:
