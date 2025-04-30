@@ -7,8 +7,15 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final botToastBuilder = BotToastInit();
 
   // This widget is the root of your application.
   @override
@@ -20,6 +27,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      builder: (context, child) {
+        Widget toastChild = MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+          child: child ?? Container(),
+        );
+        return botToastBuilder(context, toastChild);
+      },
       home: TwoButtonView(),
     );
   }
@@ -36,11 +50,11 @@ class TwoButtonView extends StatelessWidget {
         imageSignatures: "imageSignatures",
         defaultSignature: "defaultSignature",
         email: "email",
-        id: 0,
+        id: 2,
         memberOf: [],
         name: 'name',
         phone: "phone",
-        status: 0,
+        status: 1,
         updatedAt: null,
         username: "username",
         identityNumber: "identityNumber"),
